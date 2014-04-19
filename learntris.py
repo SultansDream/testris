@@ -4,24 +4,31 @@ import sys
 
 WIDTH = 10
 LENGTH = 22
-
+PRINT_CODE = 'p'
+EXIT_CODE = 'q'
+ 
 def main():
     command_line_arguments = sys.argv
-    print command_line_arguments[0]
     
+
+ 
+    command = raw_input()
     if len(command_line_arguments) >= 2:
         arguments(command_line_arguments)
+    elif command == EXIT_CODE:
+        pass
+    elif command == PRINT_CODE:
+        draw(WIDTH, LENGTH)
     else:
-        print "no arguments passed"
+        pass
+  
 
 
 def arguments(command_line_arguments):
    
-    print_code = 'p'
-    quit = 'q'
-    if print_code in command_line_arguments:
+    if PRINT_CODE in command_line_arguments:
         draw(WIDTH, LENGTH)
-    elif quit in command_line_arguments:
+    elif EXIT_CODE in command_line_arguments:
         pass
     else:
         print "no valid arguments passed, pass an argument to do something"
