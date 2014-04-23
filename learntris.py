@@ -4,47 +4,59 @@ import sys
 
 WIDTH = 10
 LENGTH = 22
+
+#Command Codes
 PRINT_CODE = 'p'
 EXIT_CODE = 'q'
+GIVEN_CODE = 'g'
+CLEAR_CODE = 'c'
+SCORE_CODE = '?s'
+REGISTER_CODE = '?n'
  
 def main():
-    command_line_arguments = sys.argv
-    
-
- 
-    command = raw_input()
-    if len(command_line_arguments) >= 2:
-        arguments(command_line_arguments)
-    elif command == EXIT_CODE:
-        pass
-    elif command == PRINT_CODE:
-        draw(WIDTH, LENGTH)
-    else:
-        pass
-  
-
-
-def arguments(command_line_arguments):
+    #Initialize our matrix with '.' to denote empty spaces
+    matrix = [['.']*WIDTH for y in xrange(LENGTH)]
    
-    if PRINT_CODE in command_line_arguments:
-        draw(WIDTH, LENGTH)
-    elif EXIT_CODE in command_line_arguments:
-        pass
-    else:
-        print "no valid arguments passed, pass an argument to do something"
-    
 
-    return
+    while True:
+        command = raw_input()
+       
+        if command == EXIT_CODE:
+            sys.exit()
+
+        elif command == PRINT_CODE:
+            print_matrix(matrix)
+
+        elif command == GIVEN_CODE:
+            matrix = given(matrix)
+
+        elif command == CLEAR_CODE:
+            matrix =  [['.']*WIDTH for y in xrange(LENGTH)]
+
+        elif command == SCORE_CODE:
+            print score()
+
+        elif command == REGISTER_CODE:
+            print register()
+        
+        else:
+            pass
     
-def draw(width, length):
-    matrix = ""
-    for y in range(length):
-        for x in range(width):
-            matrix += "." + " "
-        matrix.rstrip()
-        matrix += "\n"
+def register():
+    return 0
+
+def score():
+    return 0
+
+def given(matrix):
+    for y in range(len(matrix)):
+        matrix[y] = raw_input().split()
+    return matrix
     
-    print matrix
+def print_matrix(matrix):
+    for y in matrix:
+        print ' '.join(y)
+          
     return 
 
 
