@@ -85,7 +85,7 @@ def await_results(program, timeout_seconds=2):
     """
     countdown = timeout_seconds * 10
     while program.poll() is None and countdown > 0:
-        time.sleep(0.1) # seep for 1/10 of a second
+        time.sleep(.1) # seep for 1/10 of a second
         countdown -= 1
     if countdown == 0:
         program.kill()
